@@ -170,6 +170,9 @@ function frame() {
 setInterval(frame, 1000 / 120)
 
 
+
+
+
 canvas.addEventListener('mousemove', event => {
 
     event = event || window.event; // IE-ism

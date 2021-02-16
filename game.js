@@ -127,7 +127,6 @@ class Ball extends Circle {
 }
 
 class Player{
-    stage=0;
 
     constructor(name="nameles", color= "#fff"){
         this.name=name;
@@ -140,21 +139,20 @@ class Player{
         players.push(this);
     }
     click(x, y) {
-        this.stage++;
-        this.ball.stage=this.stage;
-        if(this.stage==2){this.ball.launch()};
-        if(this.stage==3){this.nextPlayer()};
+        this.ball.stage++;
+        if(this.ball.stage==2){this.ball.launch()};
+        if(this.ball.stage==3){this.nextPlayer()};
 
     }
     mouseMove(x, y){
-        if(this.stage==0)this.ball.set(x, y);
+        if(this.ball.stage==0)this.ball.set(x, y);
         this.ball.line={x:x, y:y};
 
     }
     nextPlayer(){
         if(this.next=="last")activePlayer=players[0]
         else activePlayer=this.next;
-        this.stage=0;
+        this.ball.stage=0;
     }
 }
 
@@ -184,5 +182,6 @@ canvas.addEventListener('mousemove', event => {
 
 canvas.addEventListener('mousedown', event => {
     console.log("click!");
+    
     activePlayer.click(event.offsetX, event.offsetY);
 });
